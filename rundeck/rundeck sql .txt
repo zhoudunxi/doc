@@ -1,0 +1,49 @@
+#!/bin/bash
+
+datetime=`date +%Y%m%d%H`
+bk=/data/apps/backup
+
+if [ ! -d "$bk" ]; then
+    mkdir $bk  　　  
+fi 
+cd /data/apps
+apps=@option.item@
+flag=@option.name@
+if [ ! -d "$apps" ]; then
+    exit 1  　　  
+fi 
+
+if [ "$flag" = "yes" ]; then
+    scp -rp www@172.19.120.205:/data/apps/$apps /data/apps/$apps.$datetime
+    if [ $? = 0 ];then
+         echo "scp success"
+    else
+         echo "scp  false" 
+         exit 2
+    fi
+    if [ ! -d "/data/apps/backup/$apps.$datetime" ];then
+            cp -rp  $apps /data/apps/backup/$apps.$datetime
+    fi 
+    rm -rf /data/apps/$apps &&  cp -rp /data/apps/$apps.$datetime /data/apps/$apps
+    rm -rf /data/apps/$apps.$datetime
+    echo "删除runtime"
+    rm -rf /data/runtime_topic/*
+    
+else
+    echo  "判断目录是否backup存在"
+    if [ ! -d "/data/apps/backup/$apps.$datetime" ];then
+            echo "备份项目"
+            cp -rp  $apps /data/apps/backup/$apps.$datetime
+    fi
+    echo "开始同步数据"
+    /usr/bin/rsync -rtlv --delete -e "ssh" -i www@172.19.120.205:/data/apps/$apps/ /data/apps/$apps
+    echo "同步完成"
+    if [ $? = 0 ];then
+         echo "sync success"
+    else
+        echo "同步失败，撤回原先版本"
+        rm -rf /data/apps/$apps & cp -rp /data/apps/backup/$apps.$datetime /data/apps/$apps
+    fi
+    echo "删除runtime"
+    rm -rf /data/runtime_topic/*
+fi

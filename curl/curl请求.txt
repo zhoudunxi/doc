@@ -1,0 +1,1 @@
+curl -l -H "Content-type: application/json" -X POST -d '{"Guid":"63af1aa779a10241fdfe42c931924b35","LoginId":"13865953694","SessionId":"87cbd8afd6be40f58a1f34d225638761","Bank":"银行名称","CardNo":"6214835492900665","Name":"张恩发"}' http://xiaoniu.zjcomex.com/api/customers/binding/add

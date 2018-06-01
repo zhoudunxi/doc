@@ -1,0 +1,24 @@
+#!/bin/bash
+
+token=`curl "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=wx7aeed706587b0ec5&corpsecret=jZjJch9MU7z7lEZ4eVucQm890gVUpw0rn7gBgR7ZO6isJ6J3f_BV6hQUOTO3IzXR"`
+
+acc_token=`echo $token | sed -r 's/.*:"(.*)",.*/\1/'`
+
+curl "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=$acc_token" -d  "{ \
+
+   \"touser\": \"multimacd\", \
+   \"msgtype\": \"text\", \
+   \"agentid\": 1, \
+   \"text\": { \
+       \"content\": \"Hello,I'm admin\" \
+   }, \
+   \"safe\":\"0\" \
+}"
+
+#注意
+#touser中的itnihao为通讯录中存在的，且itnihao已经关注该公众号，否则发送失败
+#agentid为应用的ID
+#如果发送失败，则会出现errmsg
+#{"errcode":82001,"errmsg":"All touser & toparty & totag invalid"}
+
+#https://qy.weixin.qq.com

@@ -1,0 +1,22 @@
+#注册
+http://app.peipei8.com/userCenter/user/reg_and_third
+#首页用户列表（明星/在线）
+http://app.peipei8.com/userCenter/userManager/personList
+#女-点击闪配获取推流地
+http://app.peipei8.com/pairCenter/lightningPair/openWaitToPair
+#男-生获取女生闪配列表
+http://app.peipei8.com/pairCenter/lightningPair/getWomenPairList
+#视频/语言/文字 扣费
+http://app.peipei8.com/accountCenter/userConsume/consume
+#查看自己的信息的接口
+http://app.peipei8.com/userCenter/user/persionOne
+#修改用户资料的接口
+http://app.peipei8.com/userCenter/user/editDate
+#送礼物接口
+http://app.peipei8.com/userCenter/user/give_present
+#获取视频的接口
+http://app.peipei8.com/userCenter/user/get_video
+#获取上传七牛云信息的接口
+http://app.peipei8.com/userCenter/user/get_upload_token
+#允许视频，语音接听和短信私聊的接口
+http://app.peipei8.com/userCenter/user/alowed_to_answer

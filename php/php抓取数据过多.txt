@@ -1,0 +1,16 @@
+php爬数据过多
+
+Transfer-Encoding:
+chunked
+文件传输分片,抓取数据失败
+
+
+解决办法
+curl_setopt($curl, CURLOPT_HTTP_VERSION, '1.0');
+curl_setopt($ch, CURLOPT_ENCODING , "gzip");
+分包传输
+进行一次请求时,如果数据量较大,为了加快页面显示,而采取了分包的策略
+
+http1.0
+
+
