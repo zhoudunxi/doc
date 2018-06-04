@@ -1,5 +1,4 @@
 #!/bin/bash
-
 uf651u415rq31702d="shandai主库"
 #uf69iald573xi20h0="shandai从库"
 uf69iald573xi20h0="none"
